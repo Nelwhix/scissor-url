@@ -1,5 +1,5 @@
 import { FormEvent } from "react"
-import { registerWithEmailAndPassword } from "../firebase"
+import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 import { User } from "../entity"
 
 
@@ -43,5 +43,7 @@ export default function Register() {
         
             <button>Sign up</button>
         </form>
+
+        <button onClick={signInWithGoogle}>Sign up with Google</button>
     </main>
 }
