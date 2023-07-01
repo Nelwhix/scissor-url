@@ -4,12 +4,10 @@ export default function Index() {
 
     return <>
         <div className="bg-gradient-to-r from-[#FFFFEC] to-white">
-          
             <div>
-
-                <section className="hero">
+                <section className="hero px-4">
                     <div id="optimize">
-                        <h1 className="text-5xl pt-24"> Optimize Your Online Experience with Our <br />
+                        <h1 className="text-4xl md:text-5xl pt-24"> Optimize Your Online Experience with Our <br />
                             Advanced <span className="blue">URL Shortening </span>Solution
                         </h1>
 
@@ -24,8 +22,8 @@ export default function Index() {
                             enhance user engagement.
                         </p>
                         <div className="flex justify-center">
-                            <div className="flex justify-between w-1/6 mt-4">
-                                <Link to="/signup" className="text-white bg-blue-700 rounded-full py-1 px-6">
+                            <div className="flex justify-between w-3/5 sm:w-2/5 md:w-1/3 xl:w-1/6 mt-4">
+                                <Link to="/register" className="text-white bg-blue-700 rounded-full py-1 px-6">
                                     Sign Up
                                 </Link>
                                 <span id="learn">Learn more</span>
@@ -43,16 +41,15 @@ export default function Index() {
                         </div>                    
                     </div>
                 </section>
-
             </div>
         </div>
 
-        <div className="flex justify-between px-36 pt-16">
+        <div className="flex justify-between px-4 lg:px-36 pt-16">
             <p className="text-4xl font-bold">
                 One stop.<br /> 
                 Four <span className="blue">Possibilities</span>.</p>
             
-            <div className="flex justify-between w-3/5">
+            <div className="flex flex-col md:flex-row justify-between w-3/5">
                 <p>
                     <span className="font-bold text-2xl">3M</span>
                     <br /> Active users
@@ -63,11 +60,11 @@ export default function Index() {
             </div>
         </div>
 
-        <div className="grid-container">
-            <div className="item1 grid-row-span-2 ">
-                <div className="flex justify-between w-[85%]">
-                    <img src="/icons/line_70.svg" className="line mr-3" />
-                    <p className="text-2xl font-bold"> Why choose <span className="blue">Scissors</span></p>
+        <div className="mt-32 px-4 lg:flex lg:justify-between lg:gap-x-10">
+            <div className="lg:w-3/5">
+                <div className="flex justify-center lg:justify-start">
+                    <img src="/icons/line_70.svg" className="mr-3" />
+                    <p className="text-3xl font-bold"> Why choose <span className="blue">Scissors</span></p>
                 </div>
             
                 
@@ -79,7 +76,8 @@ export default function Index() {
                     Scissors is the hub of everything that has to do with your link management. We shorten your URLs, allow you creating custom ones for your personal, business, event usage. Our swift QR code creation, management and usage tracking with advance analytics for all of these is second to none.
                 </p>
             </div>
-
+            
+            <div className="mt-5 lg:mt-0 grid md:grid-cols-2 gap-y-5">
             <div className="item2">
                 <img src="/icons/group_6.svg" />
                 <h2 className="shortening text-2xl"> URL Shortening</h2>
@@ -102,13 +100,15 @@ export default function Index() {
                 <h2 className="text-2xl">Data Analytics</h2>
                 <p style={{ lineHeight: '24px' }} className="scissors">Receive data on the usage of either your shortened URL, custom URLs or generated QR codes. Embedded to monitor progress.</p>
             </div>
+            </div>
+          
 
         </div>
 
         <div className="pricing-table">
             <div className="details mt-40">
                 <div className="text-3xl flex justify-center w-full font-bold">
-                    <img src="/icons/line_70.svg" /> 
+                    <img className="mr-3" src="/icons/line_70.svg" /> 
                     <p>A <span className="blue">price perfect</span> for your needs.</p>
                 </div>
 
@@ -118,12 +118,12 @@ export default function Index() {
             </div>
         </div>
 
-        <div className="flex">
-            <div className="cards" >
-                <div className="card shadow">
+        <div className="mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 px-2 cards">
+                <div className="border-2 rounded-lg">
                     <ul id="arranged">
-                        <li className="button-bar">Basic</li>
-                        <li className="button-bar"><h1 id="plans">Free</h1></li>
+                        <li className="button-bar text-xl">Basic</li>
+                        <li className="button-bar"><h1 className="text-3xl font-bold">Free</h1></li>
                         <li className="button-bar"><h5>Free plan for all users</h5></li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" />  Unlimited URL shortening</li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" />  Basic Link Analytics</li>
@@ -135,10 +135,10 @@ export default function Index() {
                     </ul>
                 </div>
 
-                <div className="card-active">
+                <div className="card-active rounded-lg lg:scale-110">
                     <ul id="arranged">
-                        <li className="button-bar">Professional</li>
-                        <li className="button-bar"><h1 id="plans">$15/month</h1></li>
+                        <li className="button-bar text-xl">Professional</li>
+                        <li className="button-bar"><h1 className="text-3xl font-bold">$15/month</h1></li>
                         <li className="button-bar"><h5>ideal for business creators</h5></li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" />  Enhanced Link Analytics</li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" />  Custom Branded Domains</li>
@@ -150,10 +150,10 @@ export default function Index() {
                     </ul>
                 </div>
 
-                <div className="card shadow">
+                <div className="border-2 rounded-lg">
                     <ul id="arranged">
-                        <li className="button-bar">Teams</li>
-                        <li className="button-bar" ><h1 id="plans">$25/month</h1></li>
+                        <li className="button-bar text-xl">Teams</li>
+                        <li className="button-bar" ><h1 className="text-3xl font-bold">$25/month</h1></li>
                         <li className="button-bar" ><h5>share up to 10 users</h5></li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" /> Team collaboration</li>
                         <li className="button-bar"><img src="/icons/check-circle.svg" />  User Roles and Permissions</li>

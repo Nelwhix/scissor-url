@@ -1,22 +1,25 @@
-import { FormEvent } from "react"
+import { FormEvent, useContext } from "react"
 import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 import { User } from "../entity"
 import Button from "../components/Button"
 import { Link, useNavigate } from "react-router-dom"
-
+import { useLoader, useLoaderUpdate } from "../LoaderContext"
+import Progress from "../components/Progress"
 
 export default function Register() {
     const navigate = useNavigate()
+    const loader = useLoader()
+    const toggleLoader = useLoaderUpdate()
 
     const gSignIn = async () => {
         const success = await signInWithGoogle()
-     
         if (success) {
             navigate("/trim")
         }
     }
 
     const signUp = async (ev: FormEvent) => {
+        toggleLoader()
         ev.preventDefault()
         const form = ev.target as HTMLFormElement
         const formFields = new FormData(form)
@@ -30,13 +33,14 @@ export default function Register() {
 
         const user = await registerWithEmailAndPassword(payload)
         console.log(user)
-        
+        toggleLoader()
         if (user) {
             navigate("/trim")
         }
     }
 
     return <main>
+        <Progress isAnimating={loader?.isAnimating} key={loader?.key} />
         <div id="sign">
             <p>Sign up with:</p>
             

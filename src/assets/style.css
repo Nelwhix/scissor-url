@@ -3,12 +3,9 @@ margin: 0;
 box-sizing: border-box;
 }
 
-#logo{
+#logo {
     width: 155px;
     height: 40px;
-    padding: 8px;
-    gap: 8px;
-
 }
 
 nav{
@@ -160,28 +157,16 @@ button{
     display:flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
     margin-top: 50px;
 }  
 
- .cards{
-    display: flex;
-     justify-content: center; 
-    align-items: center;
-    flex-wrap: wrap; 
-
-}
 
 .cards .card-active{
     background: linear-gradient(180deg, #1E3448 99.99%, rgba(30, 52, 72, 0) 100%);
     color:white;
     display: flex;
     align-items: center; 
-    transform: scale(1.1);
     z-index: 2;
-
-    
-
 }
 
  #arranged{
@@ -359,6 +344,15 @@ margin: 500px;
 margin-top: 30px;
 text-align: center;
 }
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
   
 
 

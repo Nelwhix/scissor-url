@@ -41,7 +41,8 @@ export const registerWithEmailAndPassword = async (formFields: User) => {
 
 export const logInWithEmailAndPassword = async (email: string, password: string) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      return res.user
     } catch (err) {
         if (err instanceof Error) {
             console.error(err);
