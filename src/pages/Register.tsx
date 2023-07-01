@@ -1,9 +1,20 @@
 import { FormEvent } from "react"
 import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 import { User } from "../entity"
+import Button from "../components/Button"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export default function Register() {
+    const navigate = useNavigate()
+
+    const gSignIn = async () => {
+        const success = await signInWithGoogle()
+     
+        if (success) {
+            navigate("/trim")
+        }
+    }
 
     const signUp = async (ev: FormEvent) => {
         ev.preventDefault()
@@ -19,31 +30,55 @@ export default function Register() {
 
         const user = await registerWithEmailAndPassword(payload)
         console.log(user)
+        
+        if (user) {
+            navigate("/trim")
+        }
     }
 
     return <main>
-        <h1 className="text-2xl text-center">Register</h1>
-
-        <form onSubmit={signUp}>
-            <div>
-                <input name="username" placeholder="Username" />
-            </div>
-
-            <div>
-                <input name="email" type="email" placeholder="Email" />
-            </div>
+        <div id="sign">
+            <p>Sign up with:</p>
             
-            <div>
-                <input name="password" type="password" placeholder="Password" />
+            <div className="flex justify-center mt-4">
+                <div className="flex justify-between w-1/6">
+                    <Button onClick={gSignIn}> 
+                        <img className="inline" src="/icons/google.svg" />Google
+                    </Button>
+                    <Button> 
+                        <img className="inline" src="/icons/apple.svg" />Apple
+                    </Button>
+                </div>
+               
             </div>
          
-            <div>
-                <input name="password_confirmation" type="password" placeholder="Re-type Password" />
-            </div>
-        
-            <button>Sign up</button>
-        </form>
+        </div>
 
-        <button onClick={signInWithGoogle}>Sign up with Google</button>
+        <div id="action">
+            <form onSubmit={signUp}>
+                <label htmlFor="fname"></label>
+                <input type="text" id="fname" name="username" placeholder="Username" /><br/>
+
+                <label htmlFor="lname"></label>
+                <input type="text" id="name" name="email" placeholder="Email" /><br />
+
+                <label htmlFor="lname"></label>
+                <input type="password" id="password" name="password" placeholder="Password" /><br /> 
+
+                <label htmlFor="lname"></label>
+                <input type="password" id="retype password" name="retype password" placeholder="Retype Password" /><br />
+  
+                    <Button>
+                        Sign Up
+                    </Button>
+                </form>
+
+            <h5 >Already have an account? 
+                <Link  to="/login">Log in</Link>
+            </h5>
+
+                <p>By signing up, you agree to <br />
+        Scissor's Terms of Service, Privacy Policy and Acceptable Use Policy.</p>
+  </div>
     </main>
 }

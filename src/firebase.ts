@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
     GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { User } from "./entity";
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -54,6 +55,7 @@ export const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
+    console.log(user)
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
@@ -64,9 +66,12 @@ export const signInWithGoogle = async () => {
         email: user.email,
       });
     }
+
+    return true
   } catch (err) {
     if (err instanceof Error) {
         console.error(err)
     }
+    return false
   }
 };
