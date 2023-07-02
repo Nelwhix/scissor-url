@@ -1,7 +1,7 @@
 import { FormEvent } from "react"
 import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 import { User } from "../entity"
-import Button from "../components/Button"
+import { object, string, ref } from "yup"
 import { Link, useNavigate } from "react-router-dom"
 import { useLoader, useLoaderUpdate } from "../LoaderContext"
 import Progress from "../components/Progress"
@@ -29,14 +29,12 @@ export default function Register() {
         ev.preventDefault()
         const form = ev.target as HTMLFormElement
         const formFields = new FormData(form)
-
-        // add client-side validation
+        
         const payload = {
-            username: formFields.get("username"),
-            email: formFields.get("email"),
-            password: formFields.get("password")
+            username: formFields.get('username'),
+            email: formFields.get('email'),
+            password: formFields.get('password')
         } as User
-
         const user = await registerWithEmailAndPassword(payload)
         console.log(user)
         toggleLoader()

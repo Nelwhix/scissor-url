@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { FormEvent } from "react"
 import { useLoader, useLoaderUpdate } from "../LoaderContext";
 import Progress from "../components/Progress";
+import {
+    FormControl,
+    FormLabel,
+    Input
+} from '@chakra-ui/react'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -37,39 +42,57 @@ export default function Login() {
         }
     }
 
-    return <>
-          <Progress isAnimating={loader?.isAnimating} key={loader?.key} />
-             <div className="flex justify-center mt-4">
-                <div className="flex justify-between w-1/6">
-                    <Button onClick={gSignIn}> 
-                        <img className="inline" src="/icons/google.svg" />Google
-                    </Button>
-                    <Button> 
-                        <img className="inline" src="/icons/apple.svg" />Apple
-                    </Button>
-                </div>
-               
-            </div>
+    return <main className="px-8">
+        <Progress isAnimating={loader?.isAnimating} key={loader?.key} />
+        <div id="sign" className="mt-10">
+            <p>Sign up with:</p>
 
-            <div id="action">
-                <form onSubmit={signIn}>
-                    <label htmlFor="username or email address"></label>
-                    <input type="text" id="fname" name="email" placeholder="Email address or username" /><br />
-                
-                    <label htmlFor="password"></label>
-                    <input type="password" id="password" name="password" placeholder="Password" /><br />
-                    <Button>Log in</Button>
-                </form>
-                
-                <a href="password.html">htmlForgot your password?</a><br />
-        
-                <h5 >Don't have an account? <button type ="button" className="log">
-                    <a  href="sign.html">Sign up</a>
+            <div className="flex justify-center mt-4">
+                <div className="flex justify-between gap-x-6">
+                    <button className="text-white bg-blue-700 rounded-md py-3 px-6" onClick={gSignIn}>
+                        <img className="inline mr-1 -mt-1" src="/icons/google.svg" />Google
                     </button>
-                </h5>
-        
-                <p>By signing up, you agree to <br />
-                    Scissor's Terms of Service, Privacy Policy and Acceptable Use Policy.</p>
-          </div>
-    </>
+                    <button className="text-white bg-blue-700 rounded-md py-3 px-6">
+                        <img className="inline mr-1 -mt-1" src="/icons/apple.svg" />Apple
+                    </button>
+                </div>
+            </div>
+        </div>
+
+            <div className="flex justify-center">
+                <div className="flex justify-between mt-4 px-4 w-80">
+                    <span className="w-52 bg-gray-300 h-[1px] mt-3" />
+                    <span className="mx-4">Or</span>
+                    <span className="w-52 bg-gray-300 h-[1px] mt-3" />
+                </div>
+            </div>
+            
+    
+            <form onSubmit={signIn} className="mt-8 lg:px-[489px]">
+                <FormControl>
+                    <FormLabel>Email Address</FormLabel>
+                    <Input type='email' name="email" />
+                </FormControl>
+
+                <FormControl className="mt-4">
+                    <FormLabel>Password</FormLabel>
+                    <Input type='password' name="password" />
+                </FormControl>
+
+             
+                <button className="text-white bg-blue-700 rounded-full py-3 px-6 w-full mt-9">
+                    Log in
+                </button>
+            </form>
+
+            <p className="mt-6 text-center">
+                <span className="mr-2">Don't have an account?</span>
+                <Link to="/register" className="text-blue-700">Sign up</Link>
+            </p>
+
+            <p className="text-center mt-5">
+                <span className="text-gray-400">By signing up, you agree to <br />
+                Scissor's</span> Terms of Service, Privacy Policy <span className="text-gray-400">and</span> Acceptable Use Policy.
+            </p>
+    </main>
 }
