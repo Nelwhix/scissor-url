@@ -47,7 +47,9 @@ export default function Layout() {
                     </div>
                 </nav>
             </header>
+            
             <Outlet />
+
             <footer>
                 <div id="scissors">
                     <div className="unit1 scissors-row-span-2" >

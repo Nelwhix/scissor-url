@@ -1,6 +1,9 @@
 import { useState, useContext, createContext } from "react"
 
-const LoaderContext = createContext<LoaderState|null>(null)
+const LoaderContext = createContext<LoaderState>({
+    isAnimating: false,
+    key: 0
+})
 
 const LoaderUpdateContext = createContext<(() => void)>(() => {})
 

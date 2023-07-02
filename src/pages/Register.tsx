@@ -1,10 +1,16 @@
-import { FormEvent, useContext } from "react"
+import { FormEvent } from "react"
 import { registerWithEmailAndPassword, signInWithGoogle } from "../firebase"
 import { User } from "../entity"
 import Button from "../components/Button"
 import { Link, useNavigate } from "react-router-dom"
 import { useLoader, useLoaderUpdate } from "../LoaderContext"
 import Progress from "../components/Progress"
+import {
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Input
+} from '@chakra-ui/react'
 
 export default function Register() {
     const navigate = useNavigate()
@@ -23,7 +29,7 @@ export default function Register() {
         ev.preventDefault()
         const form = ev.target as HTMLFormElement
         const formFields = new FormData(form)
-        
+
         // add client-side validation
         const payload = {
             username: formFields.get("username"),
@@ -39,50 +45,68 @@ export default function Register() {
         }
     }
 
-    return <main>
+    return <main className="px-8">
         <Progress isAnimating={loader?.isAnimating} key={loader?.key} />
-        <div id="sign">
+        <div id="sign" className="mt-10">
             <p>Sign up with:</p>
-            
+
             <div className="flex justify-center mt-4">
-                <div className="flex justify-between w-1/6">
-                    <Button onClick={gSignIn}> 
-                        <img className="inline" src="/icons/google.svg" />Google
-                    </Button>
-                    <Button> 
-                        <img className="inline" src="/icons/apple.svg" />Apple
-                    </Button>
+                <div className="flex justify-between gap-x-6">
+                    <button className="text-white bg-blue-700 rounded-md py-3 px-6" onClick={gSignIn}>
+                        <img className="inline mr-1 -mt-1" src="/icons/google.svg" />Google
+                    </button>
+                    <button className="text-white bg-blue-700 rounded-md py-3 px-6">
+                        <img className="inline mr-1 -mt-1" src="/icons/apple.svg" />Apple
+                    </button>
                 </div>
-               
             </div>
-         
         </div>
 
-        <div id="action">
-            <form onSubmit={signUp}>
-                <label htmlFor="fname"></label>
-                <input type="text" id="fname" name="username" placeholder="Username" /><br/>
+            <div className="flex justify-center">
+                <div className="flex justify-between mt-4 px-4 w-80">
+                    <span className="w-52 bg-gray-300 h-[1px] mt-3" />
+                    <span className="mx-4">Or</span>
+                    <span className="w-52 bg-gray-300 h-[1px] mt-3" />
+                </div>
+            </div>
+            
+    
+            <form onSubmit={signUp} className="mt-8 lg:px-[489px]">
+                <FormControl>
+                    <FormLabel>User name</FormLabel>
+                    <Input type='text' name="username" />
+                </FormControl>
 
-                <label htmlFor="lname"></label>
-                <input type="text" id="name" name="email" placeholder="Email" /><br />
+                <FormControl>
+                    <FormLabel>Email Address</FormLabel>
+                    <Input type='email' name="email" />
+                </FormControl>
 
-                <label htmlFor="lname"></label>
-                <input type="password" id="password" name="password" placeholder="Password" /><br /> 
+                <FormControl className="mt-4">
+                    <FormLabel>Password</FormLabel>
+                    <Input type='password' name="password" />
+                </FormControl>
 
-                <label htmlFor="lname"></label>
-                <input type="password" id="retype password" name="retype password" placeholder="Retype Password" /><br />
-  
-                    <Button>
-                        Sign Up
-                    </Button>
-                </form>
+                <FormControl className="mt-4">
+                    <FormLabel>Re-type Password</FormLabel>
+                    <Input type='password' name="password_confirmation" />
+                    <FormHelperText>6 or more characters, one number, one uppercase & one lower case.</FormHelperText>
+                </FormControl>
+                
 
-            <h5 >Already have an account? 
-                <Link  to="/login">Log in</Link>
-            </h5>
+                <button className="text-white bg-blue-700 rounded-full py-3 px-6 w-full mt-9">
+                    Sign up with Email
+                </button>
+            </form>
 
-                <p>By signing up, you agree to <br />
-        Scissor's Terms of Service, Privacy Policy and Acceptable Use Policy.</p>
-  </div>
+            <p className="mt-6 text-center">
+                <span className="mr-2">Already have an account?</span>
+                <Link to="/login" className="text-blue-700">Log in</Link>
+            </p>
+
+            <p className="text-center mt-5">
+                <span className="text-gray-400">By signing up, you agree to <br />
+                Scissor's</span> Terms of Service, Privacy Policy <span className="text-gray-400">and</span> Acceptable Use Policy.
+            </p>
     </main>
 }

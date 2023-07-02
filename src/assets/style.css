@@ -327,16 +327,6 @@ input[type=text], select {
     text-decoration: none;
 }
 
-input[type=text], input[type=password], select {
-width: 100%;
-padding: 12px 20px;
-/* padding: 12px 20px;  */
-margin-top: 20px;
-margin: 20px 0; 
-border-radius: 10px;
-box-sizing: border-box;
-}
-
 #action {
 border-radius: 20px;
 /* padding: 10px; */
